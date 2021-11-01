@@ -30,7 +30,7 @@ $$\mathcal{L}_{InterOrth}(\mathbf{w}_{l};\{\mathbf{w}_{l}^{e}\}_{0\le e\le N_e})
 $$\mathcal{L}=\mathcal{L}_{Seg}+\lambda\sum_{l}(\mathcal{L}_{SelfOrth}(\mathbf{w}_{l})+\mathcal{L}_{InterOrth}(\mathbf{w}_{l};\{\mathbf{w}_{l}^{e}\})$$
 ## 3. 实验
 ### (1). 实验设置
-&emsp;&emsp;主要的分割网络是在*Keras 2.3*中实现的最先进的*ResUNet*架构，以TensorFlow为后端，以软*Dice*作为分割损失$\mathcal{L}_{Seg}$。数据集有关于脑瘤的*BraTS 2020*数据集，另一个数据集是由60张*MR*图像组成，其中使用二进制掩码表明*WMH*病变的存在。
+&emsp;&emsp;主要的分割网络是在*Keras 2.3*中实现的最先进的*ResUNet*架构，以TensorFlow为后端，以软*Dice*作为分割损失$\mathcal{L}_{Seg}$。数据集有关于脑瘤的*BraTS 2020*数据集，另一个数据集是由60张*MR*图像组成，其中使用二进制掩码表明*WMH*病变的存在。  
 &emsp;&emsp;训练过程中，将训练模型随机做集合，然后做自正交约束。在训练阶段模型是依次按序被训练的。在每个设置中训练10个模型，做评估时，通过对单个概率输出进行平均，从每个设置中组合出1、3和5个模型组，并将这一过程重复10次。  
 ### (2). 图片分割的测量校准
 &emsp;&emsp;使用*Brier score*来对模型的校准表现做评估，其原始公式为：  

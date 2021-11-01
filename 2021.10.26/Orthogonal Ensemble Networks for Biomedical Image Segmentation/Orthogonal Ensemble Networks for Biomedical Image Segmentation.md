@@ -21,29 +21,36 @@ $$f_\mathbf{E}=\frac{1}{N}\sum_{i=1}^Nf_{\mathbf{w}^i}(x)$$
 根据之前的假设，让模型集$f_{w}^i$多样化可以提升预测的准确率和校准性，因此在训练过程中加入成对的正交性约束可以提升整体的性能。  
 &emsp;&emsp;**通过正交约束诱导模型多样性**。对于一个给定的神经网络，诱导卷积*filters*之间的正交性可以有效减少*filter*冗余。利用这一原则，可以避免单一神经模型内的冗余和神经模型集合的各个组成部分之间的冗余。  
 &emsp;&emsp;根据**基本数学知识**，正交化应该是做**余弦运算**。对于给定的两个向量$\mathbf{x}$和$\mathbf{y}$，余弦相似度表示正交性，-1为完全相反，1为完全相同，0表示正交。有：  
-$$SIM_C(\mathbf{x},\mathbf{y})=\frac{<\mathbf{x},\mathbf{y}>}{||\mathbf{x}||\  ||\mathbf{y}||}$$
+$$SIM_C(\mathbf{x},\mathbf{y})=\frac{<\mathbf{x},\mathbf{y}>}{||\mathbf{x}||\  ||\mathbf{y}||}$$  
 将余弦预算结果取平方（这样同时考虑了正相关和负相关），可以得到集合模型内部和之间的多样化带来的损失函数。其中自正交损失为：  
-$$\mathcal{L}_{SelfOrth}(\mathbf{w}_{l})=\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1\ j\neq j}^{n}SIM_{C}(\mathbf{w}_{l,i},\mathbf{w}_{l,j})^2$$
+$$\mathcal{L}_{SelfOrth}(\mathbf{w}_{l})=\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1\ j\neq j}^{n}SIM_{C}(\mathbf{w}_{l,i},\mathbf{w}_{l,j})^2$$  
 其中$\mathbf{w}_{l,i}$和$\mathbf{w}_{l,i}$是第*l*层的n个卷积核的矢量。为了惩罚集合中不同模型的*filter*之间的相关性，定义了模型之间多样化损失函数，按照顺序训练，模型$N_e$的第*l*层的正交损失为：  
-$$\mathcal{L}_{InterOrth}(\mathbf{w}_{l};\{\mathbf{w}_{l}^{e}\}_{0\le e\le N_e})=\frac{1}{N_e}\sum_{e=0}^{N_e-1}\sum_{i=1}^n\sum_{j=1}^nSIM_C(\mathbf{w}_{l,i},\mathbf{w}_{l,j}^e)^2$$
+$$\mathcal{L}_{InterOrth}(\mathbf{w}_{l};\{\mathbf{w}_{l}^{e}\}_{0\le e\le N_e})=\frac{1}{N_e}\sum_{e=0}^{N_e-1}\sum_{i=1}^n\sum_{j=1}^nSIM_C(\mathbf{w}_{l,i},\mathbf{w}_{l,j}^e)^2$$  
 其中$\{\mathbf{w}_{l}^{e}\}_{0\le e\le N_e}$是在顺序构建集合时前$N_e-1$个模型训练的参数。则对学习目标，正交集合网络（OEN）的总损失函数为：  
-$$\mathcal{L}=\mathcal{L}_{Seg}+\lambda\sum_{l}(\mathcal{L}_{SelfOrth}(\mathbf{w}_{l})+\mathcal{L}_{InterOrth}(\mathbf{w}_{l};\{\mathbf{w}_{l}^{e}\})$$
+$$\mathcal{L}=\mathcal{L}_{Seg}+\lambda\sum_{l}(\mathcal{L}_{SelfOrth}(\mathbf{w}_{l})+\mathcal{L}_{InterOrth}(\mathbf{w}_{l};\{\mathbf{w}_{l}^{e}\})$$  
 ## 3. 实验
 ### (1). 实验设置
 &emsp;&emsp;主要的分割网络是在*Keras 2.3*中实现的最先进的*ResUNet*架构，以TensorFlow为后端，以软*Dice*作为分割损失$\mathcal{L}_{Seg}$。数据集有关于脑瘤的*BraTS 2020*数据集，另一个数据集是由60张*MR*图像组成，其中使用二进制掩码表明*WMH*病变的存在。  
 &emsp;&emsp;训练过程中，将训练模型随机做集合，然后做自正交约束。在训练阶段模型是依次按序被训练的。在每个设置中训练10个模型，做评估时，通过对单个概率输出进行平均，从每个设置中组合出1、3和5个模型组，并将这一过程重复10次。  
 ### (2). 图片分割的测量校准
 &emsp;&emsp;使用*Brier score*来对模型的校准表现做评估，其原始公式为：  
-$$BS=\frac{1}{N}\sum_{t=1}^N(\hat{y}_t-y_t)^2$$
+$$BS=\frac{1}{N}\sum_{t=1}^N(\hat{y}_t-y_t)^2$$  
 $\hat{y}$是预测的概率，y是真实的y，BS计算结果在[0,1]之间，越小则模型的准确率越高。在本文的实验中，对于一个有N个二维/三维像素的图片做分割，有：  
-$$Br=\frac{1}{N}\sum_{i=1}^N\frac{1}{|C|}\sum_{k=1}^{|C|}(p(y_i=k|\mathbf{x};\mathbf{w})-\mathbb{1}[\overline{y}_i=k])^2$$
-C为所有的类的集合，$\overline{y}_i$是像素i的*ground truth*，$\mathbb{1}[\overline{y}_i=k]$是*indicator function*，当$y_i=k$时，取值1，否则为0。
+$$Br=\frac{1}{N}\sum_{i=1}^N\frac{1}{|C|}\sum_{k=1}^{|C|}(p(y_i=k|\mathbf{x};\mathbf{w})-\mathbb{1}[\overline{y}_i=k])^2$$  
+C为所有的类的集合，$\overline{y}_i$是像素i的*ground truth*，$\mathbb{1}[\overline{y}_i=k]$是*indicator function*，当$y_i=k$时，取值1，否则为0。  
 &emsp;&emsp;在类别高度不平衡的数据集上（如大部分像素为背景的脑部病变分割），校准性能总体可能很出色，但对少数类别很差，这些类别的错误校准不能反应在标准的*Brier score*中。本文将**分层的*Brier score***用于图片分割任务，对每个类的分层*Brier score*进行单独测量，将每个感兴趣的结构视为一个二元分割问题，以考虑少数类的错误校准。对于一个有*ground truth*$为\overline{y}$图像，对类别*k*构造分层的*Brier score*为$Br^k$，只在像素子集$\mathcal{P}_k\{p:\overline{y}_p=k\}$（像素的*ground truth*标签为k）上计算它。此时分层的*Brier score*的计算公式为：  
-$$Br^k=\frac{1}{|\mathcal{P}_k|}\sum_{i\in \mathcal{P}_k}(p(y_i=k|\mathbf{x};\mathbf{w})-\mathbb{1}[\overline{y}_i=k])^2$$
+$$Br^k=\frac{1}{|\mathcal{P}_k|}\sum_{i\in \mathcal{P}_k}(p(y_i=k|\mathbf{x};\mathbf{w})-\mathbb{1}[\overline{y}_i=k])^2$$  
 ### (3). 性能评估与实验结果总结
 &emsp;&emsp;除了*Brier score*作为性能评估函数外，还可以使用*Dice*相似度系数（DSC）来评估图像分割的结果。  
 ![](./src/1.png)  
 Fig1:在*BraTS*数据集上的定量评估结果，从上到下分别为(i)增强型肿瘤、(ii)瘤核、(iii)整个肿瘤。列表中显示了使用单个网络、3网络集合、5网络集合的情况下的评估结果。  
 ![](./src/2.png)  
 Fig2:在*WMH*数据及上的定量评估结果。列表中显示了使用单个网络、3网络集合、5网络集合的情况下的评估结果。  
-&emsp;&emsp;
+- 在仅仅整合了自正交性的模型上的表现结果要优于*baseline*，而在按序训练的集合模型之间来计算正交性，表现结果会更加出色。
+- 通过对*Brier score*和分层*Brier score*的对比，可以发现当所有模型的*Brier*值都比较小（小于$1^{-3}$）时，可以认为这些模型是经过良好校准的。但是对分层*Brier score*，较高的数值（绝大多数情况下大于0.1）反应了校准问题。因此使用分层*Brier score*可以更好地理解正交合集与其他模型相比所取得的改进。
+![](./src/3.png)  
+Fig3:使用和不使用正交约束，结果的预测方差。  
+- 图三表明正交约束给模型集合带来了多样性
+- 即使单个模型，模型间正交正则化项也能提高性能。 这可能是它通过增加对参数空间中特定点的正交性约束，即先前训练的模型的权重，隐含地降低了模型的复杂性。（**未验证**）  
+## 4. 个人观点
+&emsp;&emsp;本篇论文提出的使用正交约束来把模型集合化是一个很新颖的策略，对图像分割研究提供了思路。同时对构建新的模型架构有一个启发：利用正交性的数学性质，可以增加模型的多样性，提升校准性能。

@@ -2,7 +2,7 @@
 MIRACLE Paper Sharing Album maintained by **MIRACLE@USTC-CS**  
 The constituent of this album is mostly in Biomedical Image field, shared by doctors or masters in MIRACLE. We have been arranging the papers since the end of 2021 OCT.  
 The framework of direction is as follow:  
-|-- Miracle-Paper-Sharing-Album
+|-- Miracle-Paper-Sharing-Album  
 &emsp;|-- README.md  
 &emsp;|-- .gitignore  
 &emsp;|-- LICENSE  

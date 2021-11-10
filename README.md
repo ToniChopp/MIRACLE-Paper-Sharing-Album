@@ -12,11 +12,11 @@ The framework of direction is as follow:
 &emsp;|&emsp;&emsp;&emsp;|-- src  
 &emsp;|&emsp;&emsp;&emsp;&emsp;|-- XX.jpg  
 &emsp;|&emsp;&emsp;&emsp;&emsp;|-- XX.png  
-&emsp;|&emsp;&emsp;&emsp;&emsp;|-- code  
-&emsp;|&emsp;&emsp;&emsp;&emsp;&emsp;|-- XX.py  
-&emsp;|&emsp;&emsp;&emsp;&emsp;&emsp;|-- XX.c  
-&emsp;|&emsp;&emsp;&emsp;&emsp;&emsp;|-- XX.cpp  
-&emsp;|&emsp;&emsp;&emsp;&emsp;&emsp;|-- XX.c# e.c.t.  
+&emsp;|&emsp;&emsp;&emsp;|-- code  
+&emsp;|&emsp;&emsp;&emsp;&emsp;|-- XX.py  
+&emsp;|&emsp;&emsp;&emsp;&emsp;|-- XX.c  
+&emsp;|&emsp;&emsp;&emsp;&emsp;|-- XX.cpp  
+&emsp;|&emsp;&emsp;&emsp;&emsp;|-- XX.c# e.c.t.  
 If you are interested in the papers or the summaries in this album, please contact us.  
 TO BE CONTINUED... 
 

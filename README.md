@@ -5,7 +5,7 @@ The framework of direction is as follow:
 |-- Miracle-Paper-Sharing-Album  
 &emsp;|-- README.md  
 &emsp;|-- .gitignore  
-&emsp;|-- LICENSE  
+&emsp;|-- LICENSE   
 &emsp;|-- YYYY.MM.DD    
 &emsp;|&emsp;|-- Title of paper  
 &emsp;|&emsp;&emsp;|-- "Title of paper".md  
@@ -13,4 +13,5 @@ The framework of direction is as follow:
 &emsp;|&emsp;&emsp;&emsp;&emsp;|-- XX.jpg  
 &emsp;|&emsp;&emsp;&emsp;&emsp;|-- XX.png  
 If you are interested in the papers or the summaries in this album, please contact us.  
-TO BE CONTINUED...
+TO BE CONTINUED... 
+

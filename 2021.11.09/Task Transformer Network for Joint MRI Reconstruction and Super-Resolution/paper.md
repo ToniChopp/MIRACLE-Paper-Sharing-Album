@@ -7,7 +7,7 @@
 
 mr 扫描的数据填充到 k 空间，从 k 空间采样得到数据，然后通过反傅里叶变换得到 mri 图像。
 
-图像重建 image reconstruction和图像超分辨率是MRI的两个主要技术。前者通过减少 k 空间采样率来加速 MRI。后者通过恢复单个退化的低分辨率 (LR) 图像获得高分辨率 (HR) 图像.（不太懂什么意思。）
+图像重建 image reconstruction和图像超分辨率是MRI的两个主要技术。前者通过减少 k 空间采样率来加速 MRI。后者通过恢复单个退化的低分辨率 (LR) 图像获得高分辨率 (HR) 图像。
 
 现有方法分别执行这两个任务，忽略了它们之间的关系。
 
@@ -32,6 +32,34 @@ mr 扫描的数据填充到 k 空间，从 k 空间采样得到数据，然后�
 ## model
 
 <img src="./image/framework%20overview.png">
+
+整个框架，包含三部分，SR 分支、reconstruction 分支、task transformer 模块;
+
+两个分支用来获得 task-specific feature，后者用来学习共享特征，鼓励网络学习到一个更加泛化性的表示。
+
+两个分支的输入都是欠采样、退化的 MRI数据，包含运动伪影、模糊。rec 分支的输出是 低分辨率无运动伪影图像$X'_{LR}$，sr 分支的输出是最终的期望的高质量，高分辨率的，且没有伪影的图像。
+
+**sr 分支**
+
+如图所示，输入$\hat{x_{LR}}$是$h/s\times w/s$的，之后通过一个卷积层得到浅层特征$F^0_{SR}$，然后将它送到一个 $\text{EDSR}$的 backbone 里，来提取 SR 特征，这个 backbone 即是上文所说 task-specific，图中就是$H_{SR_i}^{RB}$，为了融合不同任务特征，使用 task transformer module 也就是$H^{tt}$，其将无运动伪影的特征送入到 SR 分支。
+
+<img src="./image/transformer_formula.png">
+
+如图该 transformer 模块的输入，将作为 sr 分支$H_{SR_i}^{RB}$的输入
+
+整个图对于各个结构展示的很详细。
+
+最后，$x'$通过 sub-pixel convolution 输出得到，整个分支在全采样高分辨率图片 x 的监督下进行训练。
+
+**rec 分支**
+
+单单上述依赖于 SR module 不足以从一个带有伪影的 LR 图片得到高分辨率且无运动伪影的图片。
+
+## summary
+
+由本文一些概念，慢慢接触到了 mri，然后就去对 mri 进行一个笼统的了解（虽然还是不懂，但是知道了学习的方向，比如基于深度学习的 MRI Reconstruction 和 SR），
+
+首先，按作者所说，这个模型能够在 SR 和 Reconstruction 任务上进行 mutil-task learning，这是它的最大成就。其次，对于这样一个模型为什么能够 work，暂时还没有一个直观理解（因为结果好，所以 work?），可能是因为文章没读完。
 
 ## reference
 

@@ -30,7 +30,7 @@ paper方法主要由以下三个连续的步骤组成：
 (3). [***Surrogate explanation function***](#surrogate-explanation-function) : 学习一个易于解释的函数$g(\cdot)$，在其决策过程中模仿$f(\cdot)$。利用该函数，试图获得对$f(\cdot)$的在概念上的全局解释。
 
 具体见下图：
-![model](source/model.png)
+![model](src/model.png)
 
 ### Concept associations  
 &emsp;&emsp;
@@ -51,7 +51,7 @@ $\min\limits_{\beta_k}\sum\limits_{x_n\in\chi_k}\ell(h_{\beta_k}(x),c_n[k])+\lam
 
 ### Causal concept ranking
 &emsp;&emsp;为了能够因果推理，paper首先定义反事实$x^{'}$作为输入图像$x$的扰动，借用了Peral对直接影响和间接影响的的定义，如下图：
-![](./source/直接和间接干扰.png)
+![](./src/直接和间接干扰.png)
 其中概念集$\nu^k$为中介，代表第$k$个概念。paper将$\Phi_1(x)$分解为两部分,$\nu_k(x)$和其补集$\bar{\nu_k}(x)$。输出可表示为$f(x)=\Phi_2(\Phi_1(x))=\Phi_2(\nu_k(x),\bar{\nu_k}(x))$。使用条件生成对抗网络学习反事实扰动。将概念视为输入到结果的因果路径中的中介，制定了以下指标量化反事实扰动的因果效应以及中介在其中的作用：  
 
 1).**Average treatment effect (ATE)**: ATE刻画分类结果总体的变化，定义为事实和反事实分类结果之间的比列差异，计算如下：<center> 
@@ -85,14 +85,14 @@ $\mathcal{L}$基于最小熵的分裂原则以获得每次分裂最高信息增�
 ## 实验
 &emsp;&emsp;
 先总结与跨分类器不同层的不同概念相关的间接影响，根据概念对分类决策的因果贡献进行概念排名，最后使用排名靠前的概念以决策树的形式学习替代解释函数$f(\cdot)$。实验在MIMIC-CXR数据集上进行，采用了SOTA模型DenseNet-121架构用于分类功能。DenseNet-121四个dense block组成，paper用三个版本的$\Phi_1(\cdot)$代表网络的第一个、前两个和前三个dense block。对于概念标注，paper考虑了经常在放射学报告中病理标注的上下文中提及的放射学特征。最后使用斯坦福CheXpert去提取和分类从公开的放射学报告中的observation。实验的结果表明将第三个dense block作为中间能获得最好的性能，以下为不同概念分类的testing-ROC-AUC和回归率：
-![ROC-AUC and recall metric](source/ROC-AUC_Recall.png)
+![ROC-AUC and recall metric](src/ROC-AUC_Recall.png)
 以下为概念的可视化：
-![concepts](source/concepts.png)
+![concepts](src/concepts.png)
 
 &emsp;&emsp;paper通过间接施加的反事实干扰得到概念的排名，并对概念排名进行了验证，通过对比TCAV的概念相关性实验，证明了其排名结果的合理性：
-![compair](source/compair.png)  
+![compair](src/compair.png)  
 最终选取了排名较好的concept构建了如下的决策树：
-![tree](source/tree.png)  
+![tree](src/tree.png)  
 但是作者在paper中没有写出对决策树性能的验证。
 
 ## 个人感悟：

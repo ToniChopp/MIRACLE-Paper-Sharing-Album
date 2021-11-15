@@ -1,5 +1,8 @@
 ## abstract
 
+[Task Transformer Network for Joint MRI Reconstruction and Super-Resolution
+](https://arxiv.org/abs/2106.06742)
+
 1. mri 的一个核心问题是速度和质量二者不可兼得，目前的方法的设计都是分开考虑，不考虑二者联系；
 2. 超分辨率和 mri 重建是 mri 的两个重要研究手段或者说方向；
 3. 这篇文章提出了端到端的 task transformer network ($\text{T}^\text{2}\text{Net}$)，联合两个任务重建和超分辨率，让特征在两个任务中共享，目的来实现高质量、超分辨率的、无运动伪影的图片；
@@ -26,12 +29,14 @@ mr 扫描的数据填充到 k 空间，从 k 空间采样得到数据，然后�
 本文贡献有三：
 1. 第一个把 transoformer 引入到重建和超分辨率的 multi-task learning 中；
 2. 网络结构，下文将具体阐述
-3. 相比各种 sota 的 重建和超分辨率的 sequential combination 模型（？），本文模型取得更好的结果。
+3. 相比各种 sota 的 重建和超分辨率的 sequential combination 模型，本文模型取得更好的结果。
 
 
 ## model
 
+<center>
 <img src="./image/framework%20overview.png">
+</center>
 
 整个框架，包含三部分，SR 分支、reconstruction 分支、task transformer 模块;
 
@@ -43,7 +48,9 @@ mr 扫描的数据填充到 k 空间，从 k 空间采样得到数据，然后�
 
 如图所示，输入$\hat{x_{LR}}$是$h/s\times w/s$的，之后通过一个卷积层得到浅层特征$F^0_{SR}$，然后将它送到一个 $\text{EDSR}$的 backbone 里，来提取 SR 特征，这个 backbone 即是上文所说 task-specific，图中就是$H_{SR_i}^{RB}$，为了融合不同任务特征，使用 task transformer module 也就是$H^{tt}$，其将无运动伪影的特征送入到 SR 分支。
 
+<center>
 <img src="./image/transformer_formula.png">
+</center>
 
 如图该 transformer 模块的输入，将作为 sr 分支$H_{SR_i}^{RB}$的输入
 
@@ -53,13 +60,55 @@ mr 扫描的数据填充到 k 空间，从 k 空间采样得到数据，然后�
 
 **rec 分支**
 
-单单上述依赖于 SR module 不足以从一个带有伪影的 LR 图片得到高分辨率且无运动伪影的图片。
+单单上述依赖于 SR module 不足以从一个带有伪影的 LR 图片得到高分辨率且无运动伪影的图片。但是通过重建可以去除伪影。
+
+文中有这样一句话`By
+comparing the input and output of the Rec branch in Fig. 1, we can easily see
+that the Rec branch is more powerful in eliminating artifacts.`
+
+具体结构和 SR 分支很相似；
+
+**Task Transformer Module**
+
+Rec 分支比 SR 分支具有更强的去除伪影的能力，这里的 task transformer 让 SR 分支去学习这种能力，让 SR 分支具有去除伪影的能力。这个模块包含 3 部分：relevance embedding, transfer attention for feature transfer, soft attention for feature synthesis。
+
+<center>
+<img src="./image/transformer_module.png">
+</center>
+
+图中很详细；
+
+对于 transformer 的 $V$，是$F_{Rec}^{i}$经过上采样然后下采样，文中说是让它和 $Q(F_{SR}^i)$ domain-consistent。
+
+relevance embedding 的目的是计算两个分支的相关性；
+
+transfer attention 为了将 Rec 分支的解剖学结构特征迁移到 SR 分支；传统的 attention 机制，对每个 query 会做重建特征的加权求和，但是这会导致模糊；对于每个 query，为了得到 Rec 分支相关性最强的位置的特征，这里通过前面计算的关联性矩阵来进步一提取特征
+
+soft attention，在图中最右边都可以算作soft attention。这一块的目的就是融合特征。
+
+## experiments
+
+使用 IXI 数据集和临床大脑 MRI 数据；
+
+<center>
+<img src="./image/exp_result.png">
+</center>
+
+使用了两个重建的方法和两个超分辨率的方法：$\text{ADMMNet}$和$\text{MICCAN}$，$\text{MGLRL}$和$\text{Lyu}$，通过 sequential combination，得到不同 baseline，进行比较。
+
+$\text{Com-A: ADMMNet-
+MGLRL, Com-B: ADMMNet-Lyu et al., Com-C: MICCAN-MGLRL, Com-
+D: MICCAN-Lyu et al.}$
+
+<center>
+<img src="./image/visual_comparison.png">
+</center>
 
 ## summary
 
 由本文一些概念，慢慢接触到了 mri，然后就去对 mri 进行一个笼统的了解（虽然还是不懂，但是知道了学习的方向，比如基于深度学习的 MRI Reconstruction 和 SR），
 
-首先，按作者所说，这个模型能够在 SR 和 Reconstruction 任务上进行 mutil-task learning，这是它的最大成就。其次，对于这样一个模型为什么能够 work，暂时还没有一个直观理解（因为结果好，所以 work?），可能是因为文章没读完。
+首先，按作者所说，这个模型能够在 SR 和 Reconstruction 任务上进行 mutil-task learning，这是它的最大成就。其次，对于这样一个模型为什么能够 work，还没有一个直观理解（因为结果好，所以 work?）。
 
 ## reference
 

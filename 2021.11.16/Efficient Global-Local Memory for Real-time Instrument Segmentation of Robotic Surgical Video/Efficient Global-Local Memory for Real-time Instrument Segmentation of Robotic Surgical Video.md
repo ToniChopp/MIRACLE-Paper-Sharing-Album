@@ -29,7 +29,7 @@
 ###4.1网络结构
 
 <center>
-<img src = "./src/dual-memory_network_architecture.png">
+<img src = "./src/dual-memory_network_architecture.PNG">
 </center>
 &emsp;&emsp;器械分割的目标是在视频的每一帧实时产生一个分割图。当前时间步长设为t，双记忆结构包括一个本地记忆和全局记忆，分别定义为$L_t$和$G_t$，由以前的帧中提取的特征图f组成，在图中分别表示为绿色和红色流。本地记忆$L_t$包含从以前的$\tau$个帧中提取的$\tau$个特征图{$f_{t-\tau}$,...,$f_{t-2}$,$f_{t-1}$}，用于局部时间聚合以避免重复计算。全局记忆由有一组从以前所有的帧中选出的特征图组成。从全局记忆中随机选取一定数量的帧来提供依赖关系降低计算成本。又利用主动学习的原理，进一步引入主动更新策略，将最有价值的特征图保存。通过全局和局部的聚合，当前帧的特征被增强以实现精准的仪器分割。
 
@@ -75,10 +75,10 @@ $$f_a^{local_i} = \mathcal{F}_{N L}(\tilde{f}_t)=[\tilde{v}_t,\frac{1}{\mathcal{
 ###5.2实验结果
 
 
-<center><img src = "./src/fig1.png"></center>
+<center><img src = "./src/fig1.PNG"></center>
 <center>Fig 1.不同方法在EndoVis17上的类型分割的视觉比较</center>
 
-<center><img src = "./src/fig2.png"></center>
+<center><img src = "./src/fig2.PNG"></center>
 <center>Fig 2.全局聚合中的视频序列的相似性和代表性</center>
 
 

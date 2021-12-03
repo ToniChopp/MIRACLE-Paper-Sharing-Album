@@ -24,3 +24,14 @@
 &emsp;&emsp;本篇论文首先概述了一个先前的Deep Learning模型的缺点：**校准能力差，导致预测结果过于保守**。随后提出使用**集合学习**这一学习策略，可以提高模型的鲁棒性和校准性能，通过**正交约束**可以诱导模型多样性，使得在图像分割领域模型有更好的表现。接着在*BraTS 2020*数据集上验证了本文提出的观点。本文贡献为：提出了一个可以**提高深度卷积神经网络(DCNN)集合的模型多样性**的策略，即假设可以利用集合的模型的正交化来提升模型整体的多样性，从而提高预测性能和更好的校准模型输出。
 
 &emsp;&emsp;本篇论文提出的使用正交约束来把模型集合化是一个很新颖的策略，对图像分割工作提供了思路。同时对构建新的模型架构有一个启发：利用正交性的数学性质，增加模型的多样性，提升校准性能。
+
+
+## 3. Pose2Mesh_ Graph Convolutional Network for 3D Human Pose and Mesh Recovery from a 2D Human Pose
+
+​<p align="right">Excerpt By：Huijie Hu</p>
+
+&emsp;&emsp;出自ECCV 2020.论文lib: http://arxiv.org/abs/2008.09047   &emsp;code: https://github.com/hongsukchoi/Pose2Mesh_RELEASE
+
+&emsp;&emsp;本篇论文针对人体三维pose和mesh估计中常见的两大问题（训练的模型在有复杂环境的图片中的预测生成不能表现很好；由于三维旋转的存在pose参数不能很好应用于回归），创新性提出了一种叫Pose2Mesh的模型，该模型用到了图卷积，直接由回归生成mesh的节点坐标数据。Pose2Mesh具有级联结构，整体的流程是先由二维的pose变为三维的pose。在MeshNet中，把二维和三维的pose作为输入，然后通过持续的上采样，由粗到细构建三维的mesh。
+
+&emsp;&emsp;本文采用**最近邻插值法**进行上采样，实现模型的coarse-to-fine。实验在**Human3.6M**、**3DPM**等数据集上训练和测试，均取得了很好的性能，说明了图卷积和级联结构用在从图片构建三维mesh模型这一工作上的优越性。

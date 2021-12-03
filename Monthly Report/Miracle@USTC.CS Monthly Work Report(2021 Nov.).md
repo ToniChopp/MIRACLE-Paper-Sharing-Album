@@ -84,16 +84,16 @@
 ## 8.Medical Transformer: Gated Axial-Attention for Medical Image Segmentation
 <p align="right">Excerpt By：Yiyao Xu</p>
 
-本篇论文主要有三个贡献
+​		本篇论文主要有三个贡献
 
-- 提出了一种**gated position-sensitive axial attention**机制，即使在**较小的**数据集上也能很好地工作  
-- 介绍了适用于 Transformer 的有效的**Local-Global (LoGo)**训练方法  
-- 提出了建立在上述两个概念之上的 **Medical-Transformer (MedT)**  
+- 提出了一种**gated position-sensitive axial attention**机制，即使在**较小的**数据集上也能很好地工作
+- 介绍了适用于 Transformer 的有效的**Local-Global (LoGo)**训练方法
+- 提出了建立在上述两个概念之上的 **Medical-Transformer (MedT)**
 
-​		因为基于self-attention的模型是在**大规模**分割数据集上评估的，轴向注意力更容易学习到 key, query and value的位置偏差。对于小规模数据集的实验（医学图像分割中经常出现的情况），位置偏差很难学习，因此在long-range interactions时并不总是准确的。本文提出了一种改进的轴向注意块，可以控制位置偏差在non-local context中的影响。增加的参数$$G_Q,G_K,G_{V_1},G_{V_2}$$都是可以学习的参数，一起组成了gating mechanism，如果位置编码的误差小，那么gating mechanism将会赋予参数更好的权重，以便更好的学习。
+
+
+​		因为基于self-attention的模型是在**大规模**分割数据集上评估的，轴向注意力更容易学习到位置偏差。对于小规模数据集的实验（医学图像分割中经常出现的情况），位置偏差很难学习，因此本文提出了一种改进的轴向注意块，可以控制位置偏差在non-local context中的影响。
 
 ​		为了提高对于图像的整体理解，可以在网络中使用两个分支：global branch：处理图像原始分辨率；local branch：处理图像的patches。在global branch中，减少gated axial transformer的层数；在local branch中，将图像分成16个patches，每个patch是前反馈的，输出特征图根据它们的位置重新采样以获得输出特征图，然后将两个分支的输出特征图相加并通过 1×1 卷积层以产生output segmentation mask。global branch处理high-level的信息，local branch处理更精细的细节信息。
 
 ​		Medical Transformer (MedT)用 gated axial attention层作为基本构建块，用LoGo策略来训练。
-
-​		对于像 Brain US 这样的图像相对较多的数据集，fully attention baseline比convolutional baselines表现更好；对于 GlaS 和 MoNuSeg 数据集，convolutional baselines比fully attention baseline表现更好，因为数据不够的时候，很难训练fully attention models。本文提出 gated axial attention 和 LoGo 均优于 convolutional baselines 和 fully attention baseline，并且MedT更是比gated axial attention 和 LoGo 分别的性能都要好（毕竟是结合了两者的）。与用fully attention baselines的三个数据集相比，MedT的改进优化分别是0.92%, 4.76 % 和 2.72 % ；与用convolutional baseline三个数据集中最好的结果相比，MedT的改进优化分别是1.32 %, 2.19 % 和 0.06 %。

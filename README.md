@@ -6,17 +6,11 @@ The framework of direction is as follow:
 &emsp;|-- README.md  
 &emsp;|-- .gitignore  
 &emsp;|-- LICENSE   
-&emsp;|-- YYYY.MM.DD    
-&emsp;|&emsp;|-- Title of paper  
-&emsp;|&emsp;&emsp;|-- "Title of paper".md  
-&emsp;|&emsp;&emsp;|-- src  
-&emsp;|&emsp;&emsp;&emsp;|-- XX.jpg  
-&emsp;|&emsp;&emsp;&emsp;|-- XX.png  
-&emsp;|&emsp;&emsp;|-- code  
-&emsp;|&emsp;&emsp;&emsp;|-- XX.py  
-&emsp;|&emsp;&emsp;&emsp;|-- XX.c  
-&emsp;|&emsp;&emsp;&emsp;|-- XX.cpp  
-&emsp;|&emsp;&emsp;&emsp;|-- XX.cs &emsp;e.c.t.  
+&emsp;|-- Monthly Report    
+&emsp;|&emsp;|-- Miracle@USTC.CS Monthly Work Report(YYYY Mmm.).md  
 If you are interested in the papers or the summaries in this album, please contact us.  
+
+**WARNING: If you want to push your excerption, remember to switch to main branch**  
+
 TO BE CONTINUED... 
 

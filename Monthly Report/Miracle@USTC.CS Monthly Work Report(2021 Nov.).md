@@ -68,3 +68,14 @@
 4. 使用了 transformer 做两个任务的特征的融合和提取。
 5. 第一次将 transformer 运用到重建和超分辨率的 multi-task learning 中。
 6. 实验使用了包括 ADMMNet、MICCAN 在内的两个重建的方法和两个超分辨率的方法，让它们线性组合，得到不同 baseline，得到的结果之中本文方法是最好的。
+
+## 7.Using Causal Analysis for Conceptual DeepLearning Explanation
+<p align="right">Excerpt By：Hao Zhang</p>
+
+出自 MICCAI 2021 pp 519-528，论文lib：https://link.springer.com/chapter/10.1007/978-3-030-87199-4_49#citeas
+
+1. 主要对机器学习模型(Dense Net-121)进行了解释，解释的过程类似领域专家的决策。采用了因果推理中的工具（反事实干预），构建了一个决策树。
+2. 主要方法为三个连续的步骤：Concept associations，Causal concept ranking和Surrogate explanation function。
+3. 损失函数采用L1正则化促进稀疏
+4. 使用nlp相关技术从弱标注中提取出训练所需要到的标注。
+5. 创新性通过间接施加的反事实干扰得到概念的排名，并进行验证，与实际相比，得到了较为贴近事实的结果。

@@ -18,5 +18,8 @@ The framework of direction is as follow:
 &emsp;|&emsp;&emsp;&emsp;|-- XX.cpp  
 &emsp;|&emsp;&emsp;&emsp;|-- XX.cs &emsp;e.c.t.  
 If you are interested in the papers or the summaries in this album, please contact us.  
+
+**WARNING: If you want to push monthly report, remember to switch to report branch**
+
 TO BE CONTINUED... 
 

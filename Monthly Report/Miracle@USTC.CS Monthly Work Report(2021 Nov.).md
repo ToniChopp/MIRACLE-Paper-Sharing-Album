@@ -35,3 +35,15 @@
 &emsp;&emsp;本篇论文针对人体三维pose和mesh估计中常见的两大问题（训练的模型在有复杂环境的图片中的预测生成不能表现很好；由于三维旋转的存在pose参数不能很好应用于回归），创新性提出了一种叫Pose2Mesh的模型，该模型用到了图卷积，直接由回归生成mesh的节点坐标数据。Pose2Mesh具有级联结构，整体的流程是先由二维的pose变为三维的pose。在MeshNet中，把二维和三维的pose作为输入，然后通过持续的上采样，由粗到细构建三维的mesh。
 
 &emsp;&emsp;本文采用**最近邻插值法**进行上采样，实现模型的coarse-to-fine。实验在**Human3.6M**、**3DPM**等数据集上训练和测试，均取得了很好的性能，说明了图卷积和级联结构用在从图片构建三维mesh模型这一工作上的优越性。
+
+
+
+## 4.Efficient Global-Local Memory for Real-time Instrument Segmentation of Robotic Surgical Video
+<p align="right">Excerpt By：Wang Jiakun</p>
+
+
+&emsp;&emsp;出自MICCAI 2021.论文lib: https://arxiv.org/abs/2109.13593  &emsp;code：https://github.com/jcwang123/DMNet
+
+&emsp;&emsp;本文针对机器人手术视频的器械分割提出了一种名为Dual-Memory Net的网络结构，主要思想是在视频的处理上不仅要考虑当前帧，还要纳入时间维度上的其他帧信号。网络的结构包括两部分，一种是局部的相邻帧进行聚合，称为ELA模块，ELA模块输出特征增强后导入一个叫做AGA的模块，此模块会主动纳入从视频开始到现在最具信息量和最有代表性的帧，最后一起聚合再进行特征增强，可以提高器械分割的特征提取效率和鲁棒性。网络的特征提取用了ConvLSTM和Non-Local机制增加感受野。
+
+&emsp;&emsp;目前在视频的器械分割上提出的其他方法要么没有考虑相邻帧可能携带的信息，要么会带来巨大的算力成本。作者提出的这种结构充分考虑了视频流的时间连续性，在视频的处理上可以利用相邻帧进行特征增强.存在的疑惑：实时视频的分割也要考虑时间成本，本文并未提到这一点，使用全局注意力机制和不断的存储帧是否会增加计算时间，需要实验验证。

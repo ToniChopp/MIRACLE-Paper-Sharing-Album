@@ -59,6 +59,7 @@
 &emsp;&emsp;本文介绍了目标梯度下降，这是一种新的增量学习方案，可在已训练网络中有效地重用冗余内核。所提出的方法可以很容易地作为一个层插入到现有网络中，并且不需要重新访问先前任务中的数据。更重要的是，它可以实现测试研究的在线学习，以增强网络在实际应用中的泛化能力。
 
 ## 6.Task Transformer Network for Joint MRI Reconstruction and Super-Resolution
+<p align="right">Excerpt By：Yuandong Liu</p>
 
 出自 MICCAI 2021，论文 lib：https://arxiv.org/abs/2106.06742 code：https://github.com/chunmeifeng/T2Net
 
@@ -78,4 +79,21 @@
 2. 主要方法为三个连续的步骤：Concept associations，Causal concept ranking和Surrogate explanation function。
 3. 损失函数采用L1正则化促进稀疏
 4. 使用nlp相关技术从弱标注中提取出训练所需要到的标注。
-5. 创新性通过间接施加的反事实干扰得到概念的排名，并进行验证，与实际相比，得到了较为贴近事实的结果。
+5. 创新性通过间接施加的反事实干扰得到概念的排名，并进行验证，与实际相比，得到了较为贴近事实的结果。  
+
+## 8.Medical Transformer: Gated Axial-Attention for Medical Image Segmentation
+<p align="right">Excerpt By：Yiyao Xu</p>
+
+本篇论文主要有三个贡献
+
+- 提出了一种**gated position-sensitive axial attention**机制，即使在**较小的**数据集上也能很好地工作  
+- 介绍了适用于 Transformer 的有效的**Local-Global (LoGo)**训练方法  
+- 提出了建立在上述两个概念之上的 **Medical-Transformer (MedT)**  
+
+​		因为基于self-attention的模型是在**大规模**分割数据集上评估的，轴向注意力更容易学习到 key, query and value的位置偏差。对于小规模数据集的实验（医学图像分割中经常出现的情况），位置偏差很难学习，因此在long-range interactions时并不总是准确的。本文提出了一种改进的轴向注意块，可以控制位置偏差在non-local context中的影响。增加的参数$$G_Q,G_K,G_{V_1},G_{V_2}$$都是可以学习的参数，一起组成了gating mechanism，如果位置编码的误差小，那么gating mechanism将会赋予参数更好的权重，以便更好的学习。
+
+​		为了提高对于图像的整体理解，可以在网络中使用两个分支：global branch：处理图像原始分辨率；local branch：处理图像的patches。在global branch中，减少gated axial transformer的层数；在local branch中，将图像分成16个patches，每个patch是前反馈的，输出特征图根据它们的位置重新采样以获得输出特征图，然后将两个分支的输出特征图相加并通过 1×1 卷积层以产生output segmentation mask。global branch处理high-level的信息，local branch处理更精细的细节信息。
+
+​		Medical Transformer (MedT)用 gated axial attention层作为基本构建块，用LoGo策略来训练。
+
+​		对于像 Brain US 这样的图像相对较多的数据集，fully attention baseline比convolutional baselines表现更好；对于 GlaS 和 MoNuSeg 数据集，convolutional baselines比fully attention baseline表现更好，因为数据不够的时候，很难训练fully attention models。本文提出 gated axial attention 和 LoGo 均优于 convolutional baselines 和 fully attention baseline，并且MedT更是比gated axial attention 和 LoGo 分别的性能都要好（毕竟是结合了两者的）。与用fully attention baselines的三个数据集相比，MedT的改进优化分别是0.92%, 4.76 % 和 2.72 % ；与用convolutional baseline三个数据集中最好的结果相比，MedT的改进优化分别是1.32 %, 2.19 % 和 0.06 %。

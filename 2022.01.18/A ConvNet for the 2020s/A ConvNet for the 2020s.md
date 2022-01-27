@@ -81,4 +81,4 @@ ImageNet-22K：下表（表头参考上表）中展示了从 ImageNet-22K 预训
 <img src="./src/fg6.jpg">
 
 ## 6.启发
-&emsp;&emsp;Fair的这篇文章感觉更多的是堆trick，做了非常多的实验也足够严谨。可能对于工业界是一个好消息，transformer在部署端更难。个人感觉像Swin这类的分层Transformer越来越接近cnn的设计，如分层下采样和滑动窗口等但又不如cnn优美自然，反观ViT这种原汁原味的attention机制，没有使用任何的先验信息，这是否有一种绕回去的感觉。还有的疑惑就是，如果数据量足够大的话，模型结构是否已经不重要了，因为已经足够拟合，从ConvNeXt和swin表现出的性能相当来看。个人觉得transformer在dl上有更好的物理解释性，在新的算子提出来之前，应该是attention和cnn的继续结合吧。
+&emsp;&emsp;Fair的这篇文章感觉更多的是堆trick，做了非常多的实验也足够严谨。可能对于工业界是一个好消息，transformer在部署端更难。个人感觉像Swin这类的分层Transformer越来越接近cnn的设计，如分层下采样和滑动窗口等但又不如cnn优美自然，反观ViT这种原汁原味的attention机制，没有使用任何的先验信息，这是否有一种绕回去的感觉。还有的疑惑就是，如果参数量足够大的话，模型结构是否已经不重要了，因为已经足够拟合，从ConvNeXt和swin表现出的性能相当来看。个人觉得transformer在dl上有更好的物理解释性，在新的算子提出来之前，应该是attention和cnn的继续结合吧。

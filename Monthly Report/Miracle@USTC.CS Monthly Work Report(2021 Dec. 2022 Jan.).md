@@ -6,9 +6,9 @@
 
 ## 1.Unsupervised Deep Video Denoising
 
-​<p align="right">Excerpt By：Rongsheng Wang</p>
+<p align="right">Excerpt By：Rongsheng Wang</p>
 
-​&emsp;&emsp;出自ICCV 2021。论文lib:https://arxiv.org/abs/2011.15045 &emsp;code:https://github.com/sreyas-mohan/udvd
+&emsp;&emsp;出自ICCV 2021。论文lib:https://arxiv.org/abs/2011.15045 &emsp;code:https://github.com/sreyas-mohan/udvd
 
 &emsp;&emsp;本篇论文首先提出要解决的问题：当前视频去噪领域最为先进的方法是**使用CNN网络**，但需要使用干净的数据做训练。在诸如显微镜的应用中，无噪音的ground truth视频往往是不可用的。为了解决这个问题，本文提出了一种在没有监督数据的情况下训练视频去噪CNN的方法，称之为无监督的深度视频去噪（UDVD）。
 
@@ -30,9 +30,9 @@
 
 <p align="right">Excerpt By：Huijie Hu</p>
 
-​&emsp;&emsp;出自MICCAI 2021。论文lib:https://rdcu.be/cyl9Z  ​&emsp;&emsp;code:https://github.com/yfzon/DT-MIL.
+&emsp;&emsp;出自MICCAI 2021。论文lib:https://rdcu.be/cyl9Z  ​&emsp;&emsp;code:https://github.com/yfzon/DT-MIL.
 
-​&emsp;&emsp;由于成像技术的发展，通常病理图像的尺寸巨大，可以将其视为很多的实例的拼接。但是在进行图像的分析的时候，由于要考虑到其中的各类微环境，需将图像综合来分析，那么这就是一个Multi-instance Learning（MIL）任务。嵌入空间的方法（ES-MIL）能够较为理想地进行全局影像分析。本文创新地将transformer引入到医学影像的MIL中，提出了一种ES-MIL的模型：DT-MIL，它包含三个模块：保持位置的降维（PPDR）、基于transformer的包嵌入（TBBE）和分类器。
+&emsp;&emsp;由于成像技术的发展，通常病理图像的尺寸巨大，可以将其视为很多的实例的拼接。但是在进行图像的分析的时候，由于要考虑到其中的各类微环境，需将图像综合来分析，那么这就是一个Multi-instance Learning（MIL）任务。嵌入空间的方法（ES-MIL）能够较为理想地进行全局影像分析。本文创新地将transformer引入到医学影像的MIL中，提出了一种ES-MIL的模型：DT-MIL，它包含三个模块：保持位置的降维（PPDR）、基于transformer的包嵌入（TBBE）和分类器。
 
 本论文通过实验可见注意力机制用于大图像的分类和预测任务的巨大优越性。而对于不同领域中优秀模型的迁移，实际上要求精心去设计相关的流程与细节。我认为本文在这方面的工作比较有价值，同时设计出多种基于Transformer的ES-MIL方法，并采取其中表现最优的模型，创新点明显。
 
@@ -59,7 +59,7 @@
 
 <p align="right">Excerpt By：Rongsheng Wang</p>
 
-​&emsp;&emsp;出自CVPR 2021。论文lib: https://arxiv.org/abs/2104.09044 &emsp;code: https://github.com/dvlab-research/ReviewKD
+&emsp;&emsp;出自CVPR 2021。论文lib: https://arxiv.org/abs/2104.09044 &emsp;code: https://github.com/dvlab-research/ReviewKD
 
 &emsp;&emsp;本文从以下问题出发：深度卷积神经网络（CNN）已经在各种计算机视觉任务中取得了显著的成功，但CNN的成功往往伴随着相当大的计算量和内存消耗，这使得它在资源有限的设备上的应用成为一个具有挑战性的课题。
 
@@ -78,13 +78,19 @@
 
 <p align="right">Excerpt By:  Huijie Hu</p>
 
-​&emsp;&emsp;出自CVPR 2021。论文lib:https://arxiv.org/abs/2012.01469  ​&emsp;&emsp;code:https://github.com/princetonvisualai/gan-debiasing
+&emsp;&emsp;出自CVPR 2021。论文lib:https://arxiv.org/abs/2012.01469  ​&emsp;&emsp;code:https://github.com/princetonvisualai/gan-debiasing
 
 &emsp;&emsp;在计算机视觉领域的任务中，视觉识别的公平性非常关键。当使用 GAN 生成图像，由于图像中的属性本身可能具有关联性，会影响生成图像的公平性，尤其是在数据集中数据不充分的情况下，本文提出了一种平衡属性的公平性的方法。将属性分为受保护属性和目标属性，将其在线性的隐空间内抽象，找到其相应的超平面。那么对于一个生成的扰动$z$，就可以找到一个举例目标属性超平面距离相等，但距离受保护属性超平面距离不定的点$z'$，用于生成一系列的图像，做数据增强。
 
 &emsp;&emsp;本文的贡献在于引入了一种基于 GAN 的数据增强方法来训练更公平的属性分类器，对于在各种环境中增强 GAN 潜在空间中的数据有广阔的应用前景。本文的创新点在于从隐空间去消除数据的不公平性，其中的数学推导和在模型训练中的细节处理方法很具有价值。
 
+## 14. Few-Shot Domain Adaptation with Polymorphic Transformers
 
+<p align="right">Excerpt By:  Yuandong Liu</p>
+
+论文出自 MICCAI 2021，论文链接：https://arxiv.org/abs/2107.04805
+
+一般 few shot learning 需要或假设目标域和源域样本来自同一域，或者它们数据空间尽可能对齐，但往往不是这样。本文提出了一种方法解决 DA 的问题，使用一个改进的 transformer 模块。使用时将该模块嵌入到一个已有预训练好模型的 feature extracter 和 task head 之间。这个新模型在 source domain 上 fine-tuning，然后在 target domain 上训练。当在目标域上训练时，这个模块的输入是 source domain 图像的 feature 和 target domain 的 prototype。这样做的目的是，通过 transformer 的 attention 来实现 source domain 和 target domain 的对齐。在 target domain 上只需要更新这一个模块。作者通过在眼底盘分割和息肉分割两个任务上的实验证明该方法的有效性。
 
 ## 16. A Convnet for the 2020s
 

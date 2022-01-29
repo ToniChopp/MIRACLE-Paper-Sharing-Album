@@ -63,10 +63,22 @@
 
 本论文通过实验可见注意力机制用于大图像的分类和预测任务的巨大优越性。而对于不同领域中优秀模型的迁移，实际上要求精心去设计相关的流程与细节。我认为本文在这方面的工作比较有价值，同时设计出多种基于Transformer的ES-MIL方法，并采取其中表现最优的模型，创新点明显。
 
-## 5. TBC
+## 5. Targeted Gradient Descent: A Novel Method for Convolutional Neural Networks Fine-tuning and Online-learning  
 
-## 6. TBC
+<p align="right">Excerpt By：Hao Zhang</p>
 
+&emsp;&emsp;出自MICCAI-2021。论文lib：https://arxiv.org/abs/2103.13557  &emsp;&emsp;code：https://github.com/DIAL-RPI/TASK-Oriented-CT-Denoising_TOD-Net
+
+&emsp;&emsp;医用CT的广泛应用引起公众对CT辐射量的关注，降低辐射剂量会增加CT成像的噪声和伪影，影响了医生的判断和下游医学图像分析任务的性能。近年基于深度学习的方法去噪得到的一定应用，但现有的方法都是与下游任务无关的。本文引入了一种新的面向任务的去噪网络(TOD-Net)，该网络利用了来自下游任务的知识来实现面向任务的损失。通过系列实证分析表明，任务导向损失弥补了其他任务无关损失，通过控制去噪器来提高任务相关区域的图像质量。这种增强反过来又为下游任务带来了各种方法的性能的普遍提高。
+&emsp;&emsp;个人认为本文针对现有深度学习方法图像去噪中忽视下游任务问题上，在WGAN框架基础上，提出了结合下游任务同时训练的去噪模型，建立了Task-oriented Loss，十分具有启发性。该方法同样可以迁移至很多其他上游任务处理，而不是仅仅局限于图像去噪上。
+
+## 6. DeepDRR -- A Catalyst for Machine Learning in Fluoroscopy-guided Procedures
+
+<p align="right">Excerpt By：Hao Zhang</p>
+
+&emsp;&emsp;出自MICCAI 2018，论文lib：https://arxiv.org/pdf/1803.08606
+&emsp;&emsp;在与诊断放射学相关的大多数学科中，基于机器学习方法优于竞争方法。但目前介入放射学尚未从深度学习中受益，主要有两个原因：第一手术过程中获得的大多数图像从未保存；其次即使保存了图像，由于大量的数据，相关的注释是个挑战。在考虑透视引导程序中，真正介入透视检查的替代方案是通过3D诊断CT对手术进行计算机模拟。这样标记相对容易获得，但是生成的合成数据正确性取决于前向模型，据此本文提出DeepDRR，这是一个用于从CT扫描中快速、真实地模拟透视和数字放射成像的框架，与深度学习的原生软件平台紧密结合。本文分别使用机器学习在 3D 和 2D 中进行Material Decomposition和散点估计，并结合解析前向投影和噪声注入来实现所需的性能。在骨盆 X 射线图像中的解剖标志检测示例中，本文证明了在DeepDRR上训练的机器学习模型可以推广到临床采集数据，而无需重新训练或领域适应。
+&emsp;&emsp;**DeepDRR**： 本文提出的基于Python、PyCUDA和PyTorch的框架，用于快速自动模拟CT数据中的X射线图像，由4个模块组成：1）使用深度分割ConvNet对CT体积进行Material Decomposition；2）一物质和光谱感知的光线追踪正向投影仪；3）基于神经网络的Rayleigh scatter estimation；4）噪声注入。
 
 
 ## 7. Anchor-guided online meta adaptation for fast one-Shot instrument segmentation from robot
@@ -180,3 +192,12 @@
 
 &emsp;&emsp;**启发：**
 &emsp;&emsp;Fair的这篇文章感觉更多的是堆trick，做了非常多的实验也足够严谨。个人感觉像Swin这类的分层Transformer越来越接近cnn的设计，如分层下采样和滑动窗口等但又不如cnn优美自然，反观ViT这种原汁原味的attention机制，没有使用任何的先验信息，这是否有一种绕回去的感觉。还有的疑惑就是，如果参数量足够大的话，模型结构是否已经不重要了，因为已经足够拟合，从ConvNeXt和swin表现出的性能相当来看，应该更多的从数据和训练方法等方面研究和改进？个人觉得transformer在dl上有更好的物理解释性但transformer在图像操作上应该还是有信息冗余，每一个patch都做attention对信息提取有用但不一定高效率，应该要设计一些辅助网络帮助更好的学习局部特征减少信息冗余，这对transformer在部署端也会有更大的改进，图像是局部信息为主的模态，而文本则是全局信息为主，在新的算子提出来之前，应该是attention和cnn的继续结合吧。
+
+
+## 17. UnFlow: Unsupervised Learning of Optical Flow with a Bidirectional Census Loss
+
+<p align="right">Excerpt By:  Hao Zhang</p>
+
+&emsp;&emsp;出自AAAI 2018，code：https://github.com/tornadomeet/UnFlow ，论文lib：https://arxiv.org/pdf/1711.07837  
+&emsp;&emsp;最近用于光流的端到端卷积网络依赖于合成数据集进行监督，但训练和测试场景之间的域不匹配是一个挑战。受经典的基于能量的光流方法的启发，本文设计了一种基于遮挡感知双向流估计和robust census transform的无监督损失，以克服对实际流的需求。在 KITTI 基准测试中，我们的无监督方法大大优于以前的无监督深度网络，甚至比仅在合成数据集上训练的类似监督方法更准确。通过选择性地对 KITTI 训练数据进行微调，我们的方法在 KITTI 2012 和 2015 基准上实现了具有竞争力的光流精度，因此此外还可以对具有有限真实数据的数据集的监督网络进行通用预训练。
+&emsp;&emsp;个人初始感觉估计遮挡部分会很难收敛，但实际效果还可以。后续的无监督论文也挺多遵照这个思路去估算遮挡部分。

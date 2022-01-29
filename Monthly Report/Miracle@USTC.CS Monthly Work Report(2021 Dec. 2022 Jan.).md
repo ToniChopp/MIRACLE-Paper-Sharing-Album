@@ -4,7 +4,7 @@
 >
 > Our Github link:https://github.com/ToniChopp/MIRACLE-Paper-Sharing-Album
 
-## 1.Unsupervised Deep Video Denoising
+## 1. Unsupervised Deep Video Denoising
 
 <p align="right">Excerpt By：Rongsheng Wang</p>
 
@@ -22,8 +22,17 @@
 - 对UDVD学到的去噪机制进行分析，证明它可以进行隐性的运动补偿，尽管它只被训练为去噪。将该分析应用于监督网络，表明同样的结论是成立的。
 
 
+## 2. Targeted Gradient Descent: A Novel Method for Convolutional Neural Networks Fine-tuning and Online-learning  
 
-## 2. Deformed2Self: Self-Supervised Denoising for Dynamic 
+<p align="right">Excerpt By：Hao Zhang</p>
+
+&emsp;&emsp;出自MICCAI-2021。论文lib：https://arxiv.org/abs/2103.13557  &emsp;&emsp;code：https://github.com/DIAL-RPI/TASK-Oriented-CT-Denoising_TOD-Net
+
+&emsp;&emsp;医用CT的广泛应用引起公众对CT辐射量的关注，降低辐射剂量会增加CT成像的噪声和伪影，影响了医生的判断和下游医学图像分析任务的性能。近年基于深度学习的方法去噪得到的一定应用，但现有的方法都是与下游任务无关的。本文引入了一种新的面向任务的去噪网络(TOD-Net)，该网络利用了来自下游任务的知识来实现面向任务的损失。通过系列实证分析表明，任务导向损失弥补了其他任务无关损失，通过控制去噪器来提高任务相关区域的图像质量。这种增强反过来又为下游任务带来了各种方法的性能的普遍提高。
+&emsp;&emsp;个人认为本文针对现有深度学习方法图像去噪中忽视下游任务问题上，在WGAN框架基础上，提出了结合下游任务同时训练的去噪模型，建立了Task-oriented Loss，十分具有启发性。该方法同样可以迁移至很多其他上游任务处理，而不是仅仅局限于图像去噪上。
+
+
+## 3. Deformed2Self: Self-Supervised Denoising for Dynamic 
 
 <p align="right">Excerpt By：Adler Xu</p>				
 
@@ -35,7 +44,7 @@
 - 通过**sequential single- and multi-image denoising networks**来优化 **image quality**，在各种噪声设置的实验中，该模型与其他最先进的无监督或自监督去噪方法具有相当甚至更好的性能。
 
 
-## 3. Generalized Cross Entropy Loss for Training Deep Neural Networks with Noisy Labels
+## 4. Generalized Cross Entropy Loss for Training Deep Neural Networks with Noisy Labels
 
 <p align="right">Excerpt By：Zhen Huang</p>
 
@@ -52,8 +61,7 @@
 ​		本文启发较多，给了不少trick。在去除/纠正噪声数据、设计改进网络较为费时的情况下，改进loss function也不失为应对有噪数据的好方法。这种方法同样可以迁移到**数据均衡、数据增强**等领域。
 
 
-
-## 4. DT-MIL: Deformable Transformer for Multi-instance Learning on Histopathological Image
+## 5. DT-MIL: Deformable Transformer for Multi-instance Learning on Histopathological Image
 
 <p align="right">Excerpt By：Huijie Hu</p>
 
@@ -63,16 +71,63 @@
 
 本论文通过实验可见注意力机制用于大图像的分类和预测任务的巨大优越性。而对于不同领域中优秀模型的迁移，实际上要求精心去设计相关的流程与细节。我认为本文在这方面的工作比较有价值，同时设计出多种基于Transformer的ES-MIL方法，并采取其中表现最优的模型，创新点明显。
 
-## 5. Targeted Gradient Descent: A Novel Method for Convolutional Neural Networks Fine-tuning and Online-learning  
 
-<p align="right">Excerpt By：Hao Zhang</p>
+## 6. Benchmarking Detection Transfer Learning with Vision Transformers
 
-&emsp;&emsp;出自MICCAI-2021。论文lib：https://arxiv.org/abs/2103.13557  &emsp;&emsp;code：https://github.com/DIAL-RPI/TASK-Oriented-CT-Denoising_TOD-Net
+<p align="right">Excerpt By：Yuandong Liu</p>
 
-&emsp;&emsp;医用CT的广泛应用引起公众对CT辐射量的关注，降低辐射剂量会增加CT成像的噪声和伪影，影响了医生的判断和下游医学图像分析任务的性能。近年基于深度学习的方法去噪得到的一定应用，但现有的方法都是与下游任务无关的。本文引入了一种新的面向任务的去噪网络(TOD-Net)，该网络利用了来自下游任务的知识来实现面向任务的损失。通过系列实证分析表明，任务导向损失弥补了其他任务无关损失，通过控制去噪器来提高任务相关区域的图像质量。这种增强反过来又为下游任务带来了各种方法的性能的普遍提高。
-&emsp;&emsp;个人认为本文针对现有深度学习方法图像去噪中忽视下游任务问题上，在WGAN框架基础上，提出了结合下游任务同时训练的去噪模型，建立了Task-oriented Loss，十分具有启发性。该方法同样可以迁移至很多其他上游任务处理，而不是仅仅局限于图像去噪上。
+论文链接：https://arxiv.org/abs/2111.11429
 
-## 6. DeepDRR -- A Catalyst for Machine Learning in Fluoroscopy-guided Procedures
+MAE 是一种有效的用于 ViT 无监督训练的方法。这篇文章通过对比各种方法（MoCo v3、BEiT、MAE等）训练 ViT 在下游任务（检测、分割）的结果，来证明 MAE 方法的有效性和优越性。
+
+这篇文章的贡献：
+
+1. 证明 MAE 等无监督方法预训练 ViT 的有效性；
+2. 它非常具体的给出了将自监督预训练模型应用到检测、分割任务上的指导细节（网络结构改动、训练的机制、超参数等），以及详尽的实验。 
+
+实验结果体现出的一些问题：
+
+1. masking-based 方法在目标检测中优于对比学习，优于有监督方法；
+2. MoCo v3 结果不如充分训练的 random 初始化。
+
+
+## 7. nnFormer Interleaved Transformer for Volumetric Segmentation
+
+<p align="right">Excerpt By:  Jiakun Wang</p>
+
+&emsp;&emsp;论文链接：https://arxiv.org/abs/2109.03201
+
+&emsp;&emsp;**主要工作：**
+&emsp;&emsp;在本文中，作者提出了一种名为nnFormer的新的医学图像分割网络。nnFormer是在卷积和自我注意力机制的交错结构上构建的，卷积结构有助于将精准的空间信息编码为高分辨率的低层次特征，并在多个尺度上建立层次化的概念。另一方面，Transformer中的自我注意力机制将长距离依赖与卷积表征纠缠在一起，以捕捉全局背景。在这种混合架构中，nnFormer比以前基于Transformer的分割方法取得了巨大的进步。
+
+&emsp;&emsp;**个人总结：**
+&emsp;&emsp;本文作者提出的这种网络结构借鉴了uNet,只是把卷积块替换成了Swin transformer块，利用分层的方式进行self-attention即在三维空间内计算而不是传统的二维，作者把这种叫做V-MSA。利用交错式的结构建模。和uNet一样，nnformer的encoder部分是下采样的，decoder部分是上采样的。阅读代码发现，代码框架也使用了nnUnet的框架，包括预处理，后处理，网络结构和训练推理部分。
+
+&emsp;&emsp;**启发：**
+&emsp;&emsp;其实往小里说，nnFormer不过是基于Swin Transformer和nnUNet的经验结合，technical上的novelty并不多。但是往大里说的话，nnFormer其实是一个很好的起点，可以启发更多的人投入到相关的topic中开发出更好的基于Transformer的医疗影像分析模型。
+
+
+## 8. Distilling Knowledge via Knowledge Review
+
+<p align="right">Excerpt By：Rongsheng Wang</p>
+
+&emsp;&emsp;出自CVPR 2021。论文lib: https://arxiv.org/abs/2104.09044 &emsp;code: https://github.com/dvlab-research/ReviewKD
+
+&emsp;&emsp;本文从以下问题出发：深度卷积神经网络（CNN）已经在各种计算机视觉任务中取得了显著的成功，但CNN的成功往往伴随着相当大的计算量和内存消耗，这使得它在资源有限的设备上的应用成为一个具有挑战性的课题。
+
+&emsp;&emsp;本文研究了以前被忽视的在知识蒸馏中设计连接路径的重要性，并相应提出了一个新的有效框架。关键的修改是利用教师网络中的低级特征来监督学生的深层特征，从而使整体性能得到很大的提高。同时进一步分析网络结构，发现学生的高层次阶段有很大能力从教师的低层次特征中学习有用的信息。类似人类学习过程，本文使用了一个知识回顾框架，使用教师的多层次信息来指导学生网络的单层次学习。
+
+本文的主要贡献为：
+
+- 在知识蒸馏中提出了一种新的审查机制，利用教师的多层次信息来指导学生网的单层次学习。
+- 提出了一个剩余学习框架，以更好地实现审查机制的学习过程。
+- 为了进一步改进知识审查机制，提出了一个基于注意力的融合（ABF）模块和一个层次化的上下文损失（HCL）函数。
+- 通过应用本文的蒸馏框架，在多个计算机视觉任务中实现了许多紧凑模型的最先进性能。
+
+&emsp;&emsp;个人认为本文的不足在于：金字塔池化可能会有问题，student和teacher变成多级可能会更好？
+
+
+## 9. DeepDRR -- A Catalyst for Machine Learning in Fluoroscopy-guided Procedures
 
 <p align="right">Excerpt By：Hao Zhang</p>
 
@@ -81,7 +136,7 @@
 &emsp;&emsp;**DeepDRR**： 本文提出的基于Python、PyCUDA和PyTorch的框架，用于快速自动模拟CT数据中的X射线图像，由4个模块组成：1）使用深度分割ConvNet对CT体积进行Material Decomposition；2）一物质和光谱感知的光线追踪正向投影仪；3）基于神经网络的Rayleigh scatter estimation；4）噪声注入。
 
 
-## 7. Anchor-guided online meta adaptation for fast one-Shot instrument segmentation from robot
+## 10. Anchor-guided online meta adaptation for fast one-Shot instrument segmentation from robot
 
 <p align="right">Excerpt By：Zhen Huang</p>
 
@@ -104,42 +159,7 @@
 2.对部分效果不好的pseudo scalar（noise）采用过滤/剪枝等方法。
 
 
-
-## 8. nnFormer Interleaved Transformer for Volumetric Segmentation
-
-<p align="right">Excerpt By:  Jiakun Wang</p>
-
-&emsp;&emsp;论文链接：https://arxiv.org/abs/2109.03201
-
-&emsp;&emsp;**主要工作：**
-&emsp;&emsp;在本文中，作者提出了一种名为nnFormer的新的医学图像分割网络。nnFormer是在卷积和自我注意力机制的交错结构上构建的，卷积结构有助于将精准的空间信息编码为高分辨率的低层次特征，并在多个尺度上建立层次化的概念。另一方面，Transformer中的自我注意力机制将长距离依赖与卷积表征纠缠在一起，以捕捉全局背景。在这种混合架构中，nnFormer比以前基于Transformer的分割方法取得了巨大的进步。
-
-&emsp;&emsp;**个人总结：**
-&emsp;&emsp;本文作者提出的这种网络结构借鉴了uNet,只是把卷积块替换成了Swin transformer块，利用分层的方式进行self-attention即在三维空间内计算而不是传统的二维，作者把这种叫做V-MSA。利用交错式的结构建模。和uNet一样，nnformer的encoder部分是下采样的，decoder部分是上采样的。阅读代码发现，代码框架也使用了nnUnet的框架，包括预处理，后处理，网络结构和训练推理部分。
-
-&emsp;&emsp;**启发：**
-&emsp;&emsp;其实往小里说，nnFormer不过是基于Swin Transformer和nnUNet的经验结合，technical上的novelty并不多。但是往大里说的话，nnFormer其实是一个很好的起点，可以启发更多的人投入到相关的topic中开发出更好的基于Transformer的医疗影像分析模型。
-
-## 9. Distilling Knowledge via Knowledge Review
-
-<p align="right">Excerpt By：Rongsheng Wang</p>
-
-&emsp;&emsp;出自CVPR 2021。论文lib: https://arxiv.org/abs/2104.09044 &emsp;code: https://github.com/dvlab-research/ReviewKD
-
-&emsp;&emsp;本文从以下问题出发：深度卷积神经网络（CNN）已经在各种计算机视觉任务中取得了显著的成功，但CNN的成功往往伴随着相当大的计算量和内存消耗，这使得它在资源有限的设备上的应用成为一个具有挑战性的课题。
-
-&emsp;&emsp;本文研究了以前被忽视的在知识蒸馏中设计连接路径的重要性，并相应提出了一个新的有效框架。关键的修改是利用教师网络中的低级特征来监督学生的深层特征，从而使整体性能得到很大的提高。同时进一步分析网络结构，发现学生的高层次阶段有很大能力从教师的低层次特征中学习有用的信息。类似人类学习过程，本文使用了一个知识回顾框架，使用教师的多层次信息来指导学生网络的单层次学习。
-
-本文的主要贡献为：
-
-- 在知识蒸馏中提出了一种新的审查机制，利用教师的多层次信息来指导学生网的单层次学习。
-- 提出了一个剩余学习框架，以更好地实现审查机制的学习过程。
-- 为了进一步改进知识审查机制，提出了一个基于注意力的融合（ABF）模块和一个层次化的上下文损失（HCL）函数。
-- 通过应用本文的蒸馏框架，在多个计算机视觉任务中实现了许多紧凑模型的最先进性能。
-
-&emsp;&emsp;个人认为本文的不足在于：金字塔池化可能会有问题，student和teacher变成多级可能会更好？
-
-## 13.Fair Attribute Classification through Latent Space De-biasing
+## 11. Fair Attribute Classification through Latent Space De-biasing
 
 <p align="right">Excerpt By:  Huijie Hu</p>
 
@@ -149,15 +169,8 @@
 
 &emsp;&emsp;本文的贡献在于引入了一种基于 GAN 的数据增强方法来训练更公平的属性分类器，对于在各种环境中增强 GAN 潜在空间中的数据有广阔的应用前景。本文的创新点在于从隐空间去消除数据的不公平性，其中的数学推导和在模型训练中的细节处理方法很具有价值。
 
-## 14. Few-Shot Domain Adaptation with Polymorphic Transformers
 
-<p align="right">Excerpt By:  Yuandong Liu</p>
-
-论文出自 MICCAI 2021，论文链接：https://arxiv.org/abs/2107.04805
-
-一般 few shot learning 需要或假设目标域和源域样本来自同一域，或者它们数据空间尽可能对齐，但往往不是这样。本文提出了一种方法解决 DA 的问题，使用一个改进的 transformer 模块。使用时将该模块嵌入到一个已有预训练好模型的 feature extracter 和 task head 之间。这个新模型在 source domain 上 fine-tuning，然后在 target domain 上训练。当在目标域上训练时，这个模块的输入是 source domain 图像的 feature 和 target domain 的 prototype。这样做的目的是，通过 transformer 的 attention 来实现 source domain 和 target domain 的对齐。在 target domain 上只需要更新这一个模块。作者通过在眼底盘分割和息肉分割两个任务上的实验证明该方法的有效性。
-
-## 15.Segmenter：Transformer for Semantic Segmentation
+## 12. Segmenter：Transformer for Semantic Segmentation
 
 <p align="right">Excerpt By:  Adler Xu</p>
 
@@ -177,7 +190,17 @@
 - 与最近的**Vision Transformer (ViT)**不同的是，所有的**images patches**都在encoding中发挥了作用，并且这个模型能够很好的捕捉到**global context**的信息。
 - 对**patch encodings**运用**simple point-wise linear decoder**到达了很好的性能，并且用**mask transformer**解码时，性能近一步提升。
 
-## 16. A Convnet for the 2020s
+
+## 13. Few-Shot Domain Adaptation with Polymorphic Transformers
+
+<p align="right">Excerpt By:  Yuandong Liu</p>
+
+论文出自 MICCAI 2021，论文链接：https://arxiv.org/abs/2107.04805
+
+一般 few shot learning 需要或假设目标域和源域样本来自同一域，或者它们数据空间尽可能对齐，但往往不是这样。本文提出了一种方法解决 DA 的问题，使用一个改进的 transformer 模块。使用时将该模块嵌入到一个已有预训练好模型的 feature extracter 和 task head 之间。这个新模型在 source domain 上 fine-tuning，然后在 target domain 上训练。当在目标域上训练时，这个模块的输入是 source domain 图像的 feature 和 target domain 的 prototype。这样做的目的是，通过 transformer 的 attention 来实现 source domain 和 target domain 的对齐。在 target domain 上只需要更新这一个模块。作者通过在眼底盘分割和息肉分割两个任务上的实验证明该方法的有效性。
+
+
+## 14. A Convnet for the 2020s
 
 <p align="right">Excerpt By:  Jiakun Wang</p>
 
@@ -194,28 +217,10 @@
 &emsp;&emsp;Fair的这篇文章感觉更多的是堆trick，做了非常多的实验也足够严谨。个人感觉像Swin这类的分层Transformer越来越接近cnn的设计，如分层下采样和滑动窗口等但又不如cnn优美自然，反观ViT这种原汁原味的attention机制，没有使用任何的先验信息，这是否有一种绕回去的感觉。还有的疑惑就是，如果参数量足够大的话，模型结构是否已经不重要了，因为已经足够拟合，从ConvNeXt和swin表现出的性能相当来看，应该更多的从数据和训练方法等方面研究和改进？个人觉得transformer在dl上有更好的物理解释性但transformer在图像操作上应该还是有信息冗余，每一个patch都做attention对信息提取有用但不一定高效率，应该要设计一些辅助网络帮助更好的学习局部特征减少信息冗余，这对transformer在部署端也会有更大的改进，图像是局部信息为主的模态，而文本则是全局信息为主，在新的算子提出来之前，应该是attention和cnn的继续结合吧。
 
 
-## 17. UnFlow: Unsupervised Learning of Optical Flow with a Bidirectional Census Loss
+## 15. UnFlow: Unsupervised Learning of Optical Flow with a Bidirectional Census Loss
 
 <p align="right">Excerpt By:  Hao Zhang</p>
 
 &emsp;&emsp;出自AAAI 2018，code：https://github.com/tornadomeet/UnFlow ，论文lib：https://arxiv.org/pdf/1711.07837  
 &emsp;&emsp;最近用于光流的端到端卷积网络依赖于合成数据集进行监督，但训练和测试场景之间的域不匹配是一个挑战。受经典的基于能量的光流方法的启发，本文设计了一种基于遮挡感知双向流估计和robust census transform的无监督损失，以克服对实际流的需求。在 KITTI 基准测试中，我们的无监督方法大大优于以前的无监督深度网络，甚至比仅在合成数据集上训练的类似监督方法更准确。通过选择性地对 KITTI 训练数据进行微调，我们的方法在 KITTI 2012 和 2015 基准上实现了具有竞争力的光流精度，因此此外还可以对具有有限真实数据的数据集的监督网络进行通用预训练。
 &emsp;&emsp;个人初始感觉估计遮挡部分会很难收敛，但实际效果还可以。后续的无监督论文也挺多遵照这个思路去估算遮挡部分。
-
-## 18. Benchmarking Detection Transfer Learning with Vision Transformers
-
-<p align="right">Excerpt By：Yuandong Liu</p>
-
-论文链接：https://arxiv.org/abs/2111.11429
-
-MAE 是一种有效的用于 ViT 无监督训练的方法。这篇文章通过对比各种方法（MoCo v3、BEiT、MAE等）训练 ViT 在下游任务（检测、分割）的结果，来证明 MAE 方法的有效性和优越性。
-
-这篇文章的贡献：
-
-1. 证明 MAE 等无监督方法预训练 ViT 的有效性；
-2. 它非常具体的给出了将自监督预训练模型应用到检测、分割任务上的指导细节（网络结构改动、训练的机制、超参数等），以及详尽的实验。 
-
-实验结果体现出的一些问题：
-
-1. masking-based 方法在目标检测中优于对比学习，优于有监督方法；
-2. MoCo v3 结果不如充分训练的 random 初始化。

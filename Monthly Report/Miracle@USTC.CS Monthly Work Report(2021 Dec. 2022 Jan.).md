@@ -23,9 +23,17 @@
 
 
 
-## 2. TBC
+## 2. Deformed2Self: Self-Supervised Denoising for Dynamic 
 
-## 
+<p align="right">Excerpt By：Adler Xu</p>				
+
+​		本文提出了一个用于动态成像去噪的深度学习框架，通过把不同时间帧的图像变形到目标帧来探索动态成像中图像的相似性，同时利用了“不同观测的噪声是独立的并且遵循相似的噪声模型”这一事实。
+
+- 整个**pipeline**可以用**end-to-end**的方式进行训练，便于优化。
+- 该模型是自监督的，不需要**clean-vs-noisy image pairs**，只需要噪声图像就可以训练。
+- 该模型可以在**single image**上训练 **(with a few auxiliary observations)**，并且不需要大的训练数据集，适用于数据稀缺的应用场景。
+- 通过**sequential single- and multi-image denoising networks**来优化 **image quality**，在各种噪声设置的实验中，该模型与其他最先进的无监督或自监督去噪方法具有相当甚至更好的性能。
+
 
 ## 3. Generalized Cross Entropy Loss for Training Deep Neural Networks with Noisy Labels
 
@@ -108,6 +116,26 @@
 论文出自 MICCAI 2021，论文链接：https://arxiv.org/abs/2107.04805
 
 一般 few shot learning 需要或假设目标域和源域样本来自同一域，或者它们数据空间尽可能对齐，但往往不是这样。本文提出了一种方法解决 DA 的问题，使用一个改进的 transformer 模块。使用时将该模块嵌入到一个已有预训练好模型的 feature extracter 和 task head 之间。这个新模型在 source domain 上 fine-tuning，然后在 target domain 上训练。当在目标域上训练时，这个模块的输入是 source domain 图像的 feature 和 target domain 的 prototype。这样做的目的是，通过 transformer 的 attention 来实现 source domain 和 target domain 的对齐。在 target domain 上只需要更新这一个模块。作者通过在眼底盘分割和息肉分割两个任务上的实验证明该方法的有效性。
+
+## 15.Segmenter：Transformer for Semantic Segmentation
+
+<p align="right">Excerpt By:  Adler Xu</p>
+
+#### 贡献
+
+​		本文有四个贡献
+
+- 基于**Vision Transformer (ViT)**对语义分割提出了一个方法：它不使用卷积，经过设计后能捕捉**contextual information**，并且性能超过了**FCN-based**的方法。
+- 提出了一系列具有不同分辨率级别的模型，可以在精确度和运行时间之间进行**trade-off**。
+- 提出了一个生成**class masks**的decoder，性能更胜一筹，并且能够扩展以执行更**general**的图像分割任务。
+- 提出的方法在**ADE20K**和**Pascal Context**数据集上展现出了最好的结果，
+
+#### 结论
+
+​		提出了一个用于语义分割的transformer模型，名为**Segmenter**。
+
+- 与最近的**Vision Transformer (ViT)**不同的是，所有的**images patches**都在encoding中发挥了作用，并且这个模型能够很好的捕捉到**global context**的信息。
+- 对**patch encodings**运用**simple point-wise linear decoder**到达了很好的性能，并且用**mask transformer**解码时，性能近一步提升。
 
 ## 16. A Convnet for the 2020s
 

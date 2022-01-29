@@ -69,6 +69,8 @@
 
 <p align="right">Excerpt By：Zhen Huang</p>
 
+​		论文lib：https://doi.org/10.1016/j.media.2021.102240。 		
+
 ​		机器人辅助手术(RAS)中带注释的手术数据的缺乏，促使以往的研究借鉴相关领域知识，通过适应性的方法对手术图像实现有前景的分割结果。本文的贡献在于提出了anchor-guided online meta adaptation (AOMA)。
 
 ​		具体的：通过元学习实现了快速的一次测试时间优化，从源视频中获得了良好的模型初始化和学习率，避免了费力的手工微调。在具有匹配感知损失的特定视频任务空间中优化可训练的两个组件。此外，设计了anchor-guided online adaptation，来解决整个机器人手术序列的性能下降。该模型在anchor matching支持的motion-insensitive pseudo-masks上都能很好适用。AOMA在两种实际场景下取得了最先进的结果:(1)普通视频到手术视频，(2)公开手术视频到内部手术视频，同时大大减少了测试运行时间。

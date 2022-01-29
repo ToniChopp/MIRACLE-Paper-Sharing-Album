@@ -65,7 +65,27 @@
 
 ## 6. TBC
 
-## 7. TBC
+## 7. Anchor-guided online meta adaptation for fast one-Shot instrument segmentation from robot
+
+<p align="right">Excerpt By：Zhen Huang</p>
+
+​		机器人辅助手术(RAS)中带注释的手术数据的缺乏，促使以往的研究借鉴相关领域知识，通过适应性的方法对手术图像实现有前景的分割结果。本文的贡献在于提出了anchor-guided online meta adaptation (AOMA)。
+
+​		具体的：通过元学习实现了快速的一次测试时间优化，从源视频中获得了良好的模型初始化和学习率，避免了费力的手工微调。在具有匹配感知损失的特定视频任务空间中优化可训练的两个组件。此外，设计了anchor-guided online adaptation，来解决整个机器人手术序列的性能下降。该模型在anchor matching支持的motion-insensitive pseudo-masks上都能很好适用。AOMA在两种实际场景下取得了最先进的结果:(1)普通视频到手术视频，(2)公开手术视频到内部手术视频，同时大大减少了测试运行时间。
+
+主要贡献在于：
+
+1.解决了机器人手术视频的一次性仪器分割问题，只需每个视频的第一帧掩模即可快速适配。
+
+2.设计一种anchor-guided online adaptation，连续地对anchor maching生成的第一帧掩码和随后的pseudo scalar进行adaptation。对于运动信号不敏感，可以很好地解决机器人手术视频中存在的快速器械运动问题。
+
+3.提出通过匹配感知优化过程元学习最优模型初始化和学习速度，实现快速online adaptation。
+
+**Expectation：**1.进行online adaptation时不对整个模型更新，只对一些层更新，收敛的更快。
+
+2.对部分效果不好的pseudo scalar（noise）采用过滤/剪枝等方法。
+
+
 
 ## 8. nnFormer Interleaved Transformer for Volumetric Segmentation
 <p align="right">Excerpt By:  Jiakun Wang</p>

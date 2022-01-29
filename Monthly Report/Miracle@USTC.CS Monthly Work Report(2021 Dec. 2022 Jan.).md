@@ -201,3 +201,21 @@
 &emsp;&emsp;出自AAAI 2018，code：https://github.com/tornadomeet/UnFlow ，论文lib：https://arxiv.org/pdf/1711.07837  
 &emsp;&emsp;最近用于光流的端到端卷积网络依赖于合成数据集进行监督，但训练和测试场景之间的域不匹配是一个挑战。受经典的基于能量的光流方法的启发，本文设计了一种基于遮挡感知双向流估计和robust census transform的无监督损失，以克服对实际流的需求。在 KITTI 基准测试中，我们的无监督方法大大优于以前的无监督深度网络，甚至比仅在合成数据集上训练的类似监督方法更准确。通过选择性地对 KITTI 训练数据进行微调，我们的方法在 KITTI 2012 和 2015 基准上实现了具有竞争力的光流精度，因此此外还可以对具有有限真实数据的数据集的监督网络进行通用预训练。
 &emsp;&emsp;个人初始感觉估计遮挡部分会很难收敛，但实际效果还可以。后续的无监督论文也挺多遵照这个思路去估算遮挡部分。
+
+## 18. Benchmarking Detection Transfer Learning with Vision Transformers
+
+<p align="right">Excerpt By：Yuandong Liu</p>
+
+论文链接：https://arxiv.org/abs/2111.11429
+
+MAE 是一种有效的用于 ViT 无监督训练的方法。这篇文章通过对比各种方法（MoCo v3、BEiT、MAE等）训练 ViT 在下游任务（检测、分割）的结果，来证明 MAE 方法的有效性和优越性。
+
+这篇文章的贡献：
+
+1. 证明 MAE 等无监督方法预训练 ViT 的有效性；
+2. 它非常具体的给出了将自监督预训练模型应用到检测、分割任务上的指导细节（网络结构改动、训练的机制、超参数等），以及详尽的实验。 
+
+实验结果体现出的一些问题：
+
+1. masking-based 方法在目标检测中优于对比学习，优于有监督方法；
+2. MoCo v3 结果不如充分训练的 random 初始化。

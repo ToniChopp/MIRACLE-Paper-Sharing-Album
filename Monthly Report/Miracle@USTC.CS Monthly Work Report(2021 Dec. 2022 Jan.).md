@@ -39,6 +39,8 @@
 
 <p align="right">Excerpt By：Zhen Huang</p>
 
+​		出自NIPS2018，论文lib：https://papers.nips.cc/paper/8094-generalized-cross-entropy-loss-for-training-deep-neural-networks-with-noisy-labels.pdf。
+
 ​		几乎所有的数据集都因为不可抗力原因含有错误标注数据，而有噪数据和无噪数据以及噪声比例的不同，都会影响到实验结果。所以**带噪学习领域**的研究是十分有意义的。
 
 ​		针对有噪数据，文章提出了一种**结合了MAE和CCE**的新损失函数（GCE），充分利用了MAE的对称性带来的可以有效抑制噪声数据，以及其存在**收敛速度慢、训练困难**的问题和CCE的无对称、快速收敛性质。针对不同的数据集（cifar10，cifar100，fashion-mnist等）设置不同的噪声比例，最终都取得了SOTA结果。作者认为，该损失函数可以很容易地应用于任何现有的DNN架构和算法，同时在各种有噪声的标签场景中产生良好的性能。
@@ -65,6 +67,8 @@
 
 ## 6. TBC
 
+
+
 ## 7. Anchor-guided online meta adaptation for fast one-Shot instrument segmentation from robot
 
 <p align="right">Excerpt By：Zhen Huang</p>
@@ -90,7 +94,9 @@
 
 
 ## 8. nnFormer Interleaved Transformer for Volumetric Segmentation
+
 <p align="right">Excerpt By:  Jiakun Wang</p>
+
 &emsp;&emsp;论文链接：https://arxiv.org/abs/2109.03201
 
 &emsp;&emsp;**主要工作：**
@@ -171,7 +177,6 @@
 
 &emsp;&emsp;**个人总结：**
 &emsp;&emsp;堆了很多trick,包括优化器如AdamW,数据增强如mixup，随机深度和标签平滑，以及GELU,LN以及分离式下采样。还有一个最重要的点是使用了更大的kernel７ｘ７而不是传统的３ｘ３，作者在这里解释说transformer的特性是非局部注意力机制获得全局感受野，虽然swin采用了局部窗口，但也是７ｘ７，所以对照swin使用了更大的卷积核。最后实验结果在imagenet和下游任务评估上取得了和swin差不多的结果或者略有超过。
-
 
 &emsp;&emsp;**启发：**
 &emsp;&emsp;Fair的这篇文章感觉更多的是堆trick，做了非常多的实验也足够严谨。个人感觉像Swin这类的分层Transformer越来越接近cnn的设计，如分层下采样和滑动窗口等但又不如cnn优美自然，反观ViT这种原汁原味的attention机制，没有使用任何的先验信息，这是否有一种绕回去的感觉。还有的疑惑就是，如果参数量足够大的话，模型结构是否已经不重要了，因为已经足够拟合，从ConvNeXt和swin表现出的性能相当来看，应该更多的从数据和训练方法等方面研究和改进？个人觉得transformer在dl上有更好的物理解释性但transformer在图像操作上应该还是有信息冗余，每一个patch都做attention对信息提取有用但不一定高效率，应该要设计一些辅助网络帮助更好的学习局部特征减少信息冗余，这对transformer在部署端也会有更大的改进，图像是局部信息为主的模态，而文本则是全局信息为主，在新的算子提出来之前，应该是attention和cnn的继续结合吧。
